@@ -46,7 +46,7 @@ const Stats = () => {
   
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
+    return date.toLocaleDateString('nb-NO', { 
       year: 'numeric', 
       month: 'short', 
       day: 'numeric',
@@ -63,14 +63,14 @@ const Stats = () => {
             className="text-2xl font-bold text-primary cursor-pointer" 
             onClick={() => navigate('/')}
           >
-            <span className="text-foreground">Quick</span>Fingers
+            <span className="text-foreground">Raske</span>Fingre
           </h1>
           <div className="flex gap-4">
             <Button variant="ghost" onClick={() => navigate('/about')}>
-              About
+              Om
             </Button>
             <Button variant="outline" onClick={() => navigate('/')}>
-              Back to Test
+              Tilbake til test
             </Button>
           </div>
         </div>
@@ -78,37 +78,37 @@ const Stats = () => {
       
       <main className="flex-1 container py-12">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold tracking-tight">Your Typing Statistics</h2>
+          <h2 className="text-3xl font-bold tracking-tight">Din Skrivestatistikk</h2>
           <p className="text-muted-foreground mt-2">
-            Track your progress and see how your typing skills are improving
+            Følg fremgangen din og se hvordan skriveferdighetene dine forbedres
           </p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg">Average Speed</CardTitle>
-              <CardDescription>All-time average WPM</CardDescription>
+              <CardTitle className="text-lg">Gjennomsnittlig hastighet</CardTitle>
+              <CardDescription>Gjennomsnittlig OPM</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-primary">{averageWpm} WPM</div>
+              <div className="text-3xl font-bold text-primary">{averageWpm} OPM</div>
             </CardContent>
           </Card>
           
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg">Best Speed</CardTitle>
-              <CardDescription>Your record WPM</CardDescription>
+              <CardTitle className="text-lg">Beste hastighet</CardTitle>
+              <CardDescription>Din rekord OPM</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-primary">{bestWpm} WPM</div>
+              <div className="text-3xl font-bold text-primary">{bestWpm} OPM</div>
             </CardContent>
           </Card>
           
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg">Average Accuracy</CardTitle>
-              <CardDescription>All-time accuracy rate</CardDescription>
+              <CardTitle className="text-lg">Gjennomsnittlig nøyaktighet</CardTitle>
+              <CardDescription>Total nøyaktighetsrate</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold text-primary">{averageAccuracy}%</div>
@@ -119,25 +119,25 @@ const Stats = () => {
         
         <Tabs defaultValue="history" className="w-full">
           <TabsList className="grid w-full max-w-md mx-auto grid-cols-2">
-            <TabsTrigger value="history">Test History</TabsTrigger>
-            <TabsTrigger value="progress">Progress Chart</TabsTrigger>
+            <TabsTrigger value="history">Testhistorikk</TabsTrigger>
+            <TabsTrigger value="progress">Fremgangsgraf</TabsTrigger>
           </TabsList>
           
           <TabsContent value="history" className="mt-6">
             <Card>
               <CardHeader>
-                <CardTitle>Recent Tests</CardTitle>
+                <CardTitle>Nylige tester</CardTitle>
                 <CardDescription>
-                  Your last {results.length} typing tests
+                  Dine siste {results.length} skrivetester
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="rounded-md border">
                   <div className="grid grid-cols-4 bg-muted p-3 text-sm font-medium">
-                    <div>Date</div>
-                    <div className="text-center">WPM</div>
-                    <div className="text-center">Accuracy</div>
-                    <div className="text-center">Characters</div>
+                    <div>Dato</div>
+                    <div className="text-center">OPM</div>
+                    <div className="text-center">Nøyaktighet</div>
+                    <div className="text-center">Tegn</div>
                   </div>
                   {results.map((result) => (
                     <div 
@@ -160,13 +160,13 @@ const Stats = () => {
           <TabsContent value="progress" className="mt-6">
             <Card>
               <CardHeader>
-                <CardTitle>Your Progress</CardTitle>
+                <CardTitle>Din fremgang</CardTitle>
                 <CardDescription>
-                  Typing speed improvement over time
+                  Forbedring av skrivehastighet over tid
                 </CardDescription>
               </CardHeader>
               <CardContent className="h-80 flex items-center justify-center text-muted-foreground">
-                Progress chart visualization will be available soon.
+                Fremgangsgraf-visualisering vil være tilgjengelig snart.
               </CardContent>
             </Card>
           </TabsContent>
@@ -174,14 +174,14 @@ const Stats = () => {
         
         <div className="mt-8 text-center">
           <Button size="lg" onClick={() => navigate('/')}>
-            Take Another Test
+            Ta en ny test
           </Button>
         </div>
       </main>
       
       <footer className="py-6 border-t">
         <div className="container text-center text-sm text-muted-foreground">
-          <p>QuickFingers Typing Test &copy; {new Date().getFullYear()}</p>
+          <p>RaskeFingre Skrivetest &copy; {new Date().getFullYear()}</p>
         </div>
       </footer>
     </div>

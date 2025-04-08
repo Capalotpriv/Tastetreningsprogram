@@ -12,14 +12,14 @@ const Index = () => {
       <header className="py-6 border-b">
         <div className="container flex justify-between items-center">
           <h1 className="text-2xl font-bold text-primary">
-            <span className="text-foreground">Quick</span>Fingers
+            <span className="text-foreground">Raske</span>Fingre
           </h1>
           <div className="flex gap-4">
             <Button variant="ghost" onClick={() => navigate('/stats')}>
-              Stats
+              Statistikk
             </Button>
             <Button variant="outline" onClick={() => navigate('/about')}>
-              About
+              Om
             </Button>
           </div>
         </div>
@@ -27,9 +27,9 @@ const Index = () => {
       
       <main className="flex-1 container py-12">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold tracking-tight">Test Your Typing Speed</h2>
+          <h2 className="text-3xl font-bold tracking-tight">Test Skrivehastigheten Din</h2>
           <p className="text-muted-foreground mt-2">
-            Start typing to begin the test. How fast can your fingers fly?
+            Begynn å skrive for å starte testen. Hvor raskt kan fingrene dine fly?
           </p>
         </div>
         
@@ -37,14 +37,14 @@ const Index = () => {
         
         <div className="mt-12 text-center text-sm text-muted-foreground">
           <p>
-            Pro tip: Focus on accuracy first, speed will follow naturally.
+            Profftips: Fokuser på nøyaktighet først, hastigheten vil følge naturlig.
           </p>
         </div>
       </main>
       
       <footer className="py-6 border-t">
         <div className="container text-center text-sm text-muted-foreground">
-          <p>QuickFingers Typing Test &copy; {new Date().getFullYear()}</p>
+          <p>RaskeFingre Skrivetest &copy; {new Date().getFullYear()}</p>
         </div>
       </footer>
     </div>

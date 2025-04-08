@@ -15,14 +15,14 @@ const About = () => {
             className="text-2xl font-bold text-primary cursor-pointer" 
             onClick={() => navigate('/')}
           >
-            <span className="text-foreground">Quick</span>Fingers
+            <span className="text-foreground">Raske</span>Fingre
           </h1>
           <div className="flex gap-4">
             <Button variant="ghost" onClick={() => navigate('/stats')}>
-              Stats
+              Statistikk
             </Button>
             <Button variant="outline" onClick={() => navigate('/')}>
-              Back to Test
+              Tilbake til test
             </Button>
           </div>
         </div>
@@ -32,45 +32,45 @@ const About = () => {
         <div className="max-w-2xl mx-auto">
           <Card>
             <CardHeader>
-              <CardTitle className="text-2xl">About QuickFingers Typing Test</CardTitle>
+              <CardTitle className="text-2xl">Om RaskeFingre Skrivetest</CardTitle>
               <CardDescription>
-                Learn more about this typing speed test application
+                Lær mer om denne skrivehastighetstesten
               </CardDescription>
             </CardHeader>
             
             <CardContent className="space-y-6">
               <div>
-                <h3 className="text-lg font-medium">What is QuickFingers?</h3>
+                <h3 className="text-lg font-medium">Hva er RaskeFingre?</h3>
                 <p className="mt-2 text-muted-foreground">
-                  QuickFingers is a web application designed to help you measure and improve your typing speed and accuracy.
-                  Whether you're a professional who types all day or just looking to improve your keyboard skills, this tool will help you track your progress.
+                  RaskeFingre er en nettapplikasjon designet for å hjelpe deg med å måle og forbedre skrivehastigheten og nøyaktigheten din.
+                  Enten du er en profesjonell som skriver hele dagen eller bare ønsker å forbedre tastaturferdighetene dine, vil dette verktøyet hjelpe deg med å følge fremgangen din.
                 </p>
               </div>
               
               <div>
-                <h3 className="text-lg font-medium">How It Works</h3>
+                <h3 className="text-lg font-medium">Hvordan det fungerer</h3>
                 <p className="mt-2 text-muted-foreground">
-                  Our typing test presents you with random quotes to type. As you type, the application measures your speed in Words Per Minute (WPM) and your typing accuracy.
-                  The standard formula calculates one word as five characters, including spaces and punctuation.
+                  Skrivetesten vår presenterer tilfeldige sitater du skal skrive. Mens du skriver, måler applikasjonen hastigheten din i ord per minutt (OPM) og skrivenøyaktigheten din.
+                  Standardformelen beregner ett ord som fem tegn, inkludert mellomrom og tegnsetting.
                 </p>
               </div>
               
               <div>
-                <h3 className="text-lg font-medium">Tips for Improving</h3>
+                <h3 className="text-lg font-medium">Tips for forbedring</h3>
                 <ul className="mt-2 text-muted-foreground space-y-2 list-disc pl-5">
-                  <li>Focus on accuracy first, then speed will follow</li>
-                  <li>Practice regularly, even just for a few minutes each day</li>
-                  <li>Learn proper finger positioning (home row technique)</li>
-                  <li>Try not to look at the keyboard while typing</li>
-                  <li>Take breaks to avoid fatigue during long practice sessions</li>
+                  <li>Fokuser på nøyaktighet først, så vil hastigheten følge</li>
+                  <li>Øv regelmessig, selv bare i noen minutter hver dag</li>
+                  <li>Lær riktig fingerplassering (home row-teknikk)</li>
+                  <li>Prøv å ikke se på tastaturet mens du skriver</li>
+                  <li>Ta pauser for å unngå tretthet under lange øvingsøkter</li>
                 </ul>
               </div>
               
               <div>
-                <h3 className="text-lg font-medium">About This Project</h3>
+                <h3 className="text-lg font-medium">Om dette prosjektet</h3>
                 <p className="mt-2 text-muted-foreground">
-                  This project was built using React, TypeScript, and Tailwind CSS.
-                  The application runs entirely in your browser and doesn't store any personal data.
+                  Dette prosjektet ble bygget med React, TypeScript og Tailwind CSS.
+                  Applikasjonen kjører helt i nettleseren din og lagrer ikke personlige data.
                 </p>
               </div>
             </CardContent>
@@ -78,7 +78,7 @@ const About = () => {
           
           <div className="mt-8 text-center">
             <Button size="lg" onClick={() => navigate('/')}>
-              Start Typing Test
+              Start skrivetest
             </Button>
           </div>
         </div>
@@ -86,7 +86,7 @@ const About = () => {
       
       <footer className="py-6 border-t">
         <div className="container text-center text-sm text-muted-foreground">
-          <p>QuickFingers Typing Test &copy; {new Date().getFullYear()}</p>
+          <p>RaskeFingre Skrivetest &copy; {new Date().getFullYear()}</p>
         </div>
       </footer>
     </div>

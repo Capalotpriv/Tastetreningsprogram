@@ -21,9 +21,9 @@ const TypingResults: React.FC<TypingResultsProps> = ({ results, onRestart }) => 
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle className="text-2xl text-center">Your Results</CardTitle>
+        <CardTitle className="text-2xl text-center">Dine resultater</CardTitle>
         <CardDescription className="text-center">
-          Here's how you performed in the typing test
+          Slik presterte du i skrivetesten
         </CardDescription>
       </CardHeader>
       
@@ -31,44 +31,44 @@ const TypingResults: React.FC<TypingResultsProps> = ({ results, onRestart }) => 
         <div className="grid grid-cols-2 gap-4">
           <div className="text-center p-4 bg-secondary rounded-lg">
             <div className="text-3xl font-bold text-primary">{wpm}</div>
-            <div className="text-sm text-muted-foreground">Words per minute</div>
+            <div className="text-sm text-muted-foreground">Ord per minutt</div>
           </div>
           
           <div className="text-center p-4 bg-secondary rounded-lg">
             <div className="text-3xl font-bold text-primary">{accuracy}%</div>
-            <div className="text-sm text-muted-foreground">Accuracy</div>
+            <div className="text-sm text-muted-foreground">Nøyaktighet</div>
           </div>
         </div>
         
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
-            <span>Accuracy</span>
+            <span>Nøyaktighet</span>
             <span className="font-medium">{accuracy}%</span>
           </div>
           <Progress value={accuracy} className="h-2" />
         </div>
         
         <div className="space-y-4">
-          <h4 className="text-sm font-medium">Statistics</h4>
+          <h4 className="text-sm font-medium">Statistikk</h4>
           
           <div className="grid grid-cols-2 gap-2 text-sm">
             <div className="flex justify-between p-2 bg-secondary/50 rounded">
-              <span className="text-muted-foreground">Correct keystrokes:</span>
+              <span className="text-muted-foreground">Korrekte tastetrykk:</span>
               <span className="font-medium">{correctChars}</span>
             </div>
             
             <div className="flex justify-between p-2 bg-secondary/50 rounded">
-              <span className="text-muted-foreground">Error keystrokes:</span>
+              <span className="text-muted-foreground">Feil tastetrykk:</span>
               <span className="font-medium">{errorChars}</span>
             </div>
             
             <div className="flex justify-between p-2 bg-secondary/50 rounded">
-              <span className="text-muted-foreground">Total keystrokes:</span>
+              <span className="text-muted-foreground">Totale tastetrykk:</span>
               <span className="font-medium">{totalChars}</span>
             </div>
             
             <div className="flex justify-between p-2 bg-secondary/50 rounded">
-              <span className="text-muted-foreground">Error rate:</span>
+              <span className="text-muted-foreground">Feilrate:</span>
               <span className="font-medium">
                 {totalChars > 0 ? ((errorChars / totalChars) * 100).toFixed(1) : 0}%
               </span>
@@ -79,7 +79,7 @@ const TypingResults: React.FC<TypingResultsProps> = ({ results, onRestart }) => 
       
       <CardFooter className="flex justify-center">
         <Button onClick={onRestart} size="lg">
-          Try Again
+          Prøv igjen
         </Button>
       </CardFooter>
     </Card>

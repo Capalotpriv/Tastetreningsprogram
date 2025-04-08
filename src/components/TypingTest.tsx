@@ -109,8 +109,8 @@ const TypingTest: React.FC<TypingTestProps> = ({ duration = 60 }) => {
       });
 
       toast({
-        title: "Test completed!",
-        description: `Your typing speed: ${wpm} WPM with ${accuracy}% accuracy.`,
+        title: "Test fullført!",
+        description: `Din skrivehastighet: ${wpm} OPM med ${accuracy}% nøyaktighet.`,
       });
     }
   }, [isFinished, startTime, correctChars, errorChars, toast]);
@@ -182,7 +182,7 @@ const TypingTest: React.FC<TypingTestProps> = ({ duration = 60 }) => {
               className="flex items-center gap-2"
             >
               <RotateCcw className="h-4 w-4" />
-              Restart
+              Start på nytt
             </Button>
           </div>
           
@@ -203,7 +203,7 @@ const TypingTest: React.FC<TypingTestProps> = ({ duration = 60 }) => {
               value={input}
               onChange={handleInputChange}
               className="sr-only"
-              aria-label="Typing input"
+              aria-label="Skriveinput"
               autoComplete="off"
               autoCapitalize="off"
               autoCorrect="off"
@@ -211,14 +211,14 @@ const TypingTest: React.FC<TypingTestProps> = ({ duration = 60 }) => {
             
             <p className="text-center text-sm text-muted-foreground mt-2">
               {isActive 
-                ? "Keep typing..." 
-                : "Click on the text or start typing to begin"}
+                ? "Fortsett å skrive..." 
+                : "Klikk på teksten eller begynn å skrive for å starte"}
             </p>
           </div>
           
           <div className="flex justify-center mt-4">
             <Button onClick={() => inputRef.current?.focus()}>
-              {isActive ? "Continue Typing" : "Start Test"}
+              {isActive ? "Fortsett å skrive" : "Start test"}
             </Button>
           </div>
         </>
