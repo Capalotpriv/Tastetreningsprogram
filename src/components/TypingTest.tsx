@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { Clock, RotateCcw } from "lucide-react";
+import { Clock, RotateCcw, Keyboard, ZapOff, Timer, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 import TypingResults from './TypingResults';
 import { getRandomQuote } from '@/lib/quotes';
@@ -165,30 +165,50 @@ const TypingTest: React.FC<TypingTestProps> = ({ duration = 60 }) => {
     });
   };
 
+  // Calculate real-time WPM for display during the test
+  const calculateCurrentWPM = () => {
+    if (!startTime || !isActive) return 0;
+    
+    const timeElapsedInMinutes = (Date.now() - startTime) / 1000 / 60;
+    if (timeElapsedInMinutes <= 0) return 0;
+    
+    // Standard: 5 characters = 1 word
+    return Math.round((correctChars / 5) / timeElapsedInMinutes);
+  };
+
   return (
-    <div className="w-full max-w-3xl mx-auto space-y-4">
+    <div className="w-full space-y-6">
       {!isFinished ? (
         <>
-          <div className="flex justify-between items-center">
-            <div className="flex items-center">
-              <Clock className="mr-2 h-5 w-5 text-muted-foreground" />
-              <span className="font-mono text-lg">{timeLeft}s</span>
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div className="flex gap-6">
+              <div className="flex items-center bg-secondary/40 backdrop-blur-sm p-2 rounded-lg border border-border/20">
+                <Clock className="mr-2 h-4 w-4 text-primary" />
+                <span className="font-mono text-lg">{timeLeft}s</span>
+              </div>
+              
+              {isActive && (
+                <div className="flex items-center bg-secondary/40 backdrop-blur-sm p-2 rounded-lg border border-border/20">
+                  <Zap className="mr-2 h-4 w-4 text-primary animate-pulse-glow" />
+                  <span className="font-mono text-lg">{calculateCurrentWPM()} OPM</span>
+                </div>
+              )}
             </div>
             
             <Button 
               variant="outline" 
               size="sm" 
               onClick={resetTest}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 border-border/30"
             >
               <RotateCcw className="h-4 w-4" />
-              Start på nytt
+              <span className="hidden sm:inline">Start på nytt</span>
             </Button>
           </div>
           
-          <Card className="relative">
+          <Card className="relative futuristic-card overflow-hidden">
             <CardContent 
-              className="p-6 min-h-[200px] max-h-[300px] overflow-auto font-mono text-lg leading-relaxed"
+              className="p-4 sm:p-6 min-h-[200px] max-h-[300px] overflow-auto font-mono text-base sm:text-lg leading-relaxed bg-secondary/20"
               ref={contentRef}
               onClick={() => inputRef.current?.focus()}
             >
@@ -209,16 +229,39 @@ const TypingTest: React.FC<TypingTestProps> = ({ duration = 60 }) => {
               autoCorrect="off"
             />
             
-            <p className="text-center text-sm text-muted-foreground mt-2">
+            <p className="text-center text-sm text-muted-foreground mt-4">
               {isActive 
-                ? "Fortsett å skrive..." 
-                : "Klikk på teksten eller begynn å skrive for å starte"}
+                ? (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-secondary/40 rounded-md border border-border/20">
+                    <Keyboard className="h-4 w-4 text-primary" />
+                    Fortsett å skrive...
+                  </span>
+                ) 
+                : (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-secondary/40 rounded-md border border-border/20">
+                    <ZapOff className="h-4 w-4 text-primary" />
+                    Klikk på teksten eller begynn å skrive for å starte
+                  </span>
+                )}
             </p>
           </div>
           
-          <div className="flex justify-center mt-4">
-            <Button onClick={() => inputRef.current?.focus()}>
-              {isActive ? "Fortsett å skrive" : "Start test"}
+          <div className="flex justify-center mt-6">
+            <Button 
+              onClick={() => inputRef.current?.focus()}
+              className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
+            >
+              {isActive ? (
+                <>
+                  <Keyboard className="mr-2 h-4 w-4" />
+                  Fortsett å skrive
+                </>
+              ) : (
+                <>
+                  <Timer className="mr-2 h-4 w-4" />
+                  Start test
+                </>
+              )}
             </Button>
           </div>
         </>
