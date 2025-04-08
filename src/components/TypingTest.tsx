@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,6 +6,7 @@ import { Clock, RotateCcw, Keyboard, ZapOff, Timer, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 import TypingResults from './TypingResults';
 import { getRandomQuote } from '@/lib/quotes';
+import { saveTypingResult } from '@/services/typingResultsService';
 
 interface TypingTestProps {
   duration?: number;
@@ -34,12 +34,10 @@ const TypingTest: React.FC<TypingTestProps> = ({ duration = 60 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  // Initialize with a random quote
   useEffect(() => {
     resetTest();
   }, []);
 
-  // Timer countdown
   useEffect(() => {
     let interval: NodeJS.Timeout;
     
@@ -82,13 +80,12 @@ const TypingTest: React.FC<TypingTestProps> = ({ duration = 60 }) => {
     setCurrentCharIndex(0);
     setResults(null);
     
-    // Reset scroll position of typing content
     if (contentRef.current) {
       contentRef.current.scrollTop = 0;
     }
   }, [duration]);
 
-  const finishTest = useCallback(() => {
+  const finishTest = useCallback(async () => {
     if (!isFinished && startTime) {
       setIsActive(false);
       setIsFinished(true);
@@ -100,20 +97,41 @@ const TypingTest: React.FC<TypingTestProps> = ({ duration = 60 }) => {
       const wpm = Math.round(words / minutes);
       const accuracy = totalChars > 0 ? Math.round((correctChars / totalChars) * 100) : 0;
       
-      setResults({
+      const testResults = {
         wpm,
         accuracy,
         correctChars,
         errorChars,
         totalChars
-      });
+      };
+      
+      setResults(testResults);
 
-      toast({
-        title: "Test fullført!",
-        description: `Din skrivehastighet: ${wpm} OPM med ${accuracy}% nøyaktighet.`,
-      });
+      try {
+        await saveTypingResult({
+          wpm,
+          accuracy,
+          correct_chars: correctChars,
+          error_chars: errorChars,
+          total_chars: totalChars,
+          test_duration: duration,
+          user_id: null
+        });
+        
+        toast({
+          title: "Test fullført!",
+          description: `Din skrivehastighet: ${wpm} OPM med ${accuracy}% nøyaktighet. Resultatet er lagret!`,
+        });
+      } catch (error) {
+        console.error("Failed to save result:", error);
+        toast({
+          title: "Test fullført!",
+          description: `Din skrivehastighet: ${wpm} OPM med ${accuracy}% nøyaktighet. (Kunne ikke lagre resultatet)`,
+          variant: "destructive"
+        });
+      }
     }
-  }, [isFinished, startTime, correctChars, errorChars, toast]);
+  }, [isFinished, startTime, correctChars, errorChars, toast, duration]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!isActive && !isFinished) {
@@ -133,7 +151,6 @@ const TypingTest: React.FC<TypingTestProps> = ({ duration = 60 }) => {
       setCurrentCharIndex(prev => prev + 1);
       setInput(e.target.value);
       
-      // Auto-finish if reached the end of the quote
       if (currentCharIndex + 1 >= quote.length) {
         finishTest();
       }
@@ -142,11 +159,8 @@ const TypingTest: React.FC<TypingTestProps> = ({ duration = 60 }) => {
 
   const renderTypingContent = () => {
     return quote.split('').map((char, index) => {
-      // Check if this character has been typed
       const isTyped = index < currentCharIndex;
-      // Check if the typed character matches the expected one
       const isCorrect = index < input.length && input[index] === char;
-      // Check if this is the current character being typed
       const isCurrent = index === currentCharIndex;
       
       return (
@@ -165,14 +179,12 @@ const TypingTest: React.FC<TypingTestProps> = ({ duration = 60 }) => {
     });
   };
 
-  // Calculate real-time WPM for display during the test
   const calculateCurrentWPM = () => {
     if (!startTime || !isActive) return 0;
     
     const timeElapsedInMinutes = (Date.now() - startTime) / 1000 / 60;
     if (timeElapsedInMinutes <= 0) return 0;
     
-    // Standard: 5 characters = 1 word
     return Math.round((correctChars / 5) / timeElapsedInMinutes);
   };
 
