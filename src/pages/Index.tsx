@@ -63,7 +63,7 @@ const Index = () => {
           <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-secondary/60 backdrop-blur-sm rounded-md">
             <Zap className="h-4 w-4 text-primary animate-pulse-glow" />
             <p>
-              Profftips: Fokuser på nøyaktighet først, hastigheten vil følge naturlig.
+              Et lite tips: Fokuser på nøyaktighet først, hastigheten vil følge naturlig.
             </p>
           </div>
         </div>
