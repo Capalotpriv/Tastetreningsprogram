@@ -1,10 +1,12 @@
 
 import { supabase } from "@/integrations/supabase/client";
-import type { TablesInsert } from "@/integrations/supabase/types";
+import type { Database } from "@/integrations/supabase/types";
 
-type TypingResult = TablesInsert<"typing_results">;
+// Define more specific types based on the Supabase generated types
+type TypingResult = Database['public']['Tables']['typing_results']['Row'];
+type TypingResultInsert = Database['public']['Tables']['typing_results']['Insert'];
 
-export const saveTypingResult = async (result: Omit<TypingResult, "id" | "created_at">) => {
+export const saveTypingResult = async (result: Omit<TypingResultInsert, "id" | "created_at">) => {
   const { data, error } = await supabase
     .from("typing_results")
     .insert(result)
