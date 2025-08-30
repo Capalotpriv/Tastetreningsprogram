@@ -1,4 +1,3 @@
-
 import React from 'react';
 import TypingTest from '@/components/TypingTest';
 import { Button } from '@/components/ui/button';
