@@ -46,3 +46,4 @@ MIT License © Kamal Mahad
 ## Backend-info
 
 Dette prosjektet har ingen backend. All generering skjer lokalt i nettleseren, og ingen data sendes til servere. Dette gjør prosjektet enkelt å bruke, men funksjonaliteten er begrenset til det som kan håndteres på klient-siden.
+
