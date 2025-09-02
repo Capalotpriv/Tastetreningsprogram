@@ -1,6 +1,12 @@
-### Skrivemaler 
+### Tastetreningsprogram 
 
-Skrivemaler er et enkelt, norsk nettbasert verktøy som hjelper brukere å lage ulike typer tekster. Verktøyet fungerer som en malgenerator for søknader, klager, invitasjoner og andre tekster, som brukeren kan tilpasse med egne detaljer.
+Dette er et enkelt tastetreningsprogram som måler hvor raskt og nøyaktig du kan skrive ord. Programmet gir deg ord å skrive, registrerer tastetrykkene dine og beregner blant annet:
+
+- Skrivehastighet (ord per minutt)
+- Nøyaktighet (hvor mange feil du gjør)
+- Total tid brukt
+
+Målet er å gi deg en morsom og effektiv måte å trene opp skriveferdighetene dine på.
 
 ## Demo
 
