@@ -45,9 +45,8 @@ npm run dev
 ## Bidra
 Bidrag er velkomne! Lag gjerne en pull request eller rapporter problemer under "Issues".
 
-## Lisens
 
-MIT License © Kamal Mahad
+
 
 ## Backend-info
 
